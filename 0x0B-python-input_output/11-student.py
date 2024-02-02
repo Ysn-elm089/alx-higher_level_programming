@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-
-""" Student to JSON"""
+"""Defines a class Student."""
 class Student:
 
     """ Class Student"""
@@ -17,3 +16,8 @@ class Student:
         if (type(attrs) == list and all(type(subAttr) == str for subAttr in attrs)):
             return {k: getattr(self,k) for k in attrs if hasattr(self,k)}
         return self.__dict__
+
+    def reload_from_json(self, json):
+        """Reload object attributes from a dictionary."""
+        for key, value in json.items():
+            setattr(self,key,value)
