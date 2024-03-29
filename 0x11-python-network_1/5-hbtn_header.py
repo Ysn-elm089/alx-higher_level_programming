@@ -1,10 +1,9 @@
-
 #!/usr/bin/python3
 """
 Displays the value of the X-Request-Id variable
 found in the header of the response
 """
-import urllib.request
+import requests
 from sys import argv
 
 
@@ -14,11 +13,10 @@ def main(argv):
     and displays the value of the X-Request-Id variable
     found in the header of the response
     """
-    url = argv
-    with urllib.request.urlopen(url) as response:
-        headers = response.info()
-        print(headers['X-Request-Id'])
+    url = argv[1]
+    r = requests.get(url)
+    headers = r.headers.get('X-Request-Id')
+    print(headers)
 
 if __name__ == "__main__":
-    main(argv[1])
-
+    main(argv)
